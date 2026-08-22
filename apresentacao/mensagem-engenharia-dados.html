@@ -1,0 +1,114 @@
+<title>Mensagem — Engenharia de Dados</title>
+<style>
+:root{
+  --bg:#FFFFFF; --surface:#F6FAFB; --surface-2:#EAF6F8; --border:#DEE9EB;
+  --navy:#114350; --text:#1C3B44; --muted:#5B7480;
+  --teal:#2EA6BC; --teal-dark:#1B7A8C; --coral:#EF8264; --coral-dark:#C1523A;
+  --code-bg:#EEF5F6; --bubble:#F6FAFB;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1A1E; --surface:#15262B; --surface-2:#163038; --border:#24393F;
+    --navy:#DCEEF1; --text:#D3E6E9; --muted:#8FA9B0;
+    --teal:#52C2D6; --teal-dark:#7FD4E3; --coral:#F2916F; --coral-dark:#F6B39B;
+    --code-bg:#16282D; --bubble:#15262B;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1A1E; --surface:#15262B; --surface-2:#163038; --border:#24393F;
+  --navy:#DCEEF1; --text:#D3E6E9; --muted:#8FA9B0;
+  --teal:#52C2D6; --teal-dark:#7FD4E3; --coral:#F2916F; --coral-dark:#F6B39B;
+  --code-bg:#16282D; --bubble:#15262B;
+}
+*{box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  line-height:1.6;}
+.page{max-width:720px;margin:0 auto;padding:56px 24px 96px;}
+.wordmark{display:flex;align-items:center;font-weight:800;font-size:22px;letter-spacing:-0.01em;margin-bottom:28px;}
+.wordmark .imp,.wordmark .ulso{color:var(--navy);}
+.wordmark .gov{color:var(--teal);}
+.wordmark svg circle{stroke:var(--navy);}
+.kicker{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--teal-dark);background:var(--surface-2);padding:4px 10px;border-radius:999px;margin-bottom:14px;}
+h1{font-size:30px;font-weight:300;color:var(--navy);letter-spacing:-0.01em;margin:0 0 8px;text-wrap:balance;}
+.meta{color:var(--muted);font-size:14px;margin-bottom:32px;}
+.slack{background:var(--bubble);border:1px solid var(--border);border-radius:14px;padding:8px 28px 20px;}
+.msg-head{display:flex;align-items:center;gap:12px;padding-top:20px;}
+.avatar{width:38px;height:38px;border-radius:9px;background:linear-gradient(135deg,var(--teal),var(--navy));
+  display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:16px;flex:none;}
+.who{font-weight:700;color:var(--navy);font-size:15px;}
+.who .ts{font-weight:400;color:var(--muted);font-size:12.5px;margin-left:8px;}
+.msg-body{padding-left:50px;margin-top:6px;}
+.msg-body p{margin:0 0 14px;max-width:64ch;}
+strong{color:var(--navy);}
+code{font-family:ui-monospace,"Cascadia Code","Source Code Pro",Menlo,Consolas,monospace;
+  background:var(--code-bg);color:var(--teal-dark);padding:2px 6px;border-radius:4px;font-size:.86em;}
+.priority{border:1px solid var(--border);background:var(--surface);border-radius:10px;padding:14px 18px;margin:14px 0;}
+.priority .h{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+.priority .num{width:24px;height:24px;border-radius:50%;background:var(--teal);color:#fff;font-weight:800;
+  font-size:13px;display:flex;align-items:center;justify-content:center;flex:none;}
+.priority .t{font-weight:700;color:var(--navy);font-size:15px;}
+.priority p{margin:0;}
+.others{border-left:3px solid var(--coral);padding-left:14px;margin:10px 0;}
+.others b{color:var(--coral-dark);}
+ul{padding-left:20px;margin:8px 0 0;}
+li{margin-bottom:8px;}
+a{color:var(--teal-dark);}
+@media (max-width:640px){.page{padding:32px 16px 72px;}.msg-body{padding-left:0;margin-top:12px;}h1{font-size:24px;}}
+</style>
+<div class="page">
+  <div class="wordmark">
+    <span class="imp">imp</span>
+    <svg width="30" height="22" viewBox="0 0 37 27" style="margin:0 2px"><circle cx="12" cy="13.5" r="9" fill="none" stroke-width="4.5"/><circle cx="24" cy="13.5" r="9" fill="none" stroke-width="4.5"/></svg>
+    <span class="ulso">ulso</span><span class="gov">gov</span>
+  </div>
+
+  <span class="kicker">Entregável 4 · Para engenharia de dados</span>
+  <h1>Mensagem sobre a extração do e-SUS PEC</h1>
+  <p class="meta">Formato: Slack, canal do time responsável pela extração.</p>
+
+  <div class="slack">
+    <div class="msg-head">
+      <div class="avatar">AE</div>
+      <div class="who">analytics-engineer <span class="ts">hoje às 14:32</span></div>
+    </div>
+    <div class="msg-body">
+      <p>Fala, pessoal! 👋</p>
+      <p>Rodando a modelagem da Lista Nominal de Hipertensão em cima do que vocês exportam do e-SUS PEC, encontrei alguns problemas nos dados. Priorizei os <strong>três</strong> que eu resolveria primeiro:</p>
+
+      <div class="priority">
+        <div class="h"><span class="num">1</span><span class="t">Falta o campo de microárea</span></div>
+        <p>Nenhuma das três tabelas (<code>cidadao_pec</code>, <code>atendimento_individual</code>, <code>procedimentos</code>) tem microárea — só equipe (<code>nu_ine</code>/<code>no_equipe</code>), que é um nível acima. O protótipo da tela, já aprovado pelo produto, tem filtro por microárea — então isso bloqueia uma funcionalidade que já foi validada. Sei que o ACS registra microárea no e-SUS PEC — dá pra incluir na extração?</p>
+      </div>
+
+      <div class="priority">
+        <div class="h"><span class="num">2</span><span class="t">O mesmo atendimento muda de valor entre cargas</span></div>
+        <p>Peguei o atendimento <code>co_seq_fat_atd_ind = 4100004.HIPERTENSÃO</code> (cidadão 700001): chega em maio com <code>no_equipe = "ESF 2"</code>, e em junho o <em>mesmo</em> registro histórico (mesma data, 2023-08-06) chega como <code>"Esf 2"</code>. Não é isolado — vi vários assim. Se a carga é incremental, um fato histórico não devia mudar de texto entre reenvios. É normalização sem controle de versão, ou reprocessamento total a cada carga? Hoje dedupliquei por "fica a transmissão mais recente" — queria confirmar se é mesmo a lógica certa.</p>
+      </div>
+
+      <div class="priority">
+        <div class="h"><span class="num">3</span><span class="t">Dicionário de dados desatualizado</span></div>
+        <p>Duas divergências entre o que está documentado e o que veio no CSV:</p>
+        <ul>
+          <li><code>co_seq_fat_atd_ind</code> está documentado como <code>bigint</code>, mas os valores reais são compostos (ex. <code>"4100001.HIPERTENSÃO"</code> — id + linha de cuidado). Tive que tratar como texto.</li>
+          <li><code>atendimento_individual.csv</code> diz conter só atendimentos de médico/enfermeiro, mas tem registros com CBO de técnico de enfermagem (<code>322205</code>), classificação <code>GERAL</code>.</li>
+        </ul>
+        <p style="margin-top:10px">Vale atualizar a doc ou a extração, pra próxima pessoa não confiar no tipo ou na regra errada.</p>
+      </div>
+
+      <p><strong>Outros achados, sem prioridade imediata:</strong></p>
+      <div class="others">
+        <p><b>Dois <code>nu_ine</code> com o mesmo <code>no_equipe</code>.</b> <code>0001234571</code> e <code>0001234572</code> aparecem ambos gravados como <code>"ESF 5"</code> (169 e 165 cidadãos cada). Como <code>no_equipe</code> é texto livre e <code>nu_ine</code> é a chave estável, qualquer relatório agrupado pelo nome — em vez do código — mistura duas equipes reais numa só linha, sem erro visível. Achei isso construindo um controle de acesso por <code>nu_ine</code> — vale avisar o produto também.</p>
+      </div>
+      <div class="others">
+        <p><b>Datas no futuro e nascimentos implausíveis.</b> Checagem automática contra a data do retrato (2026-08-01) achou 27 atendimentos e 19 procedimentos com <code>dt_registro</code> no futuro, e 5 nascimentos implausíveis — inclui o caso de idade 0 já citado antes. Sintoma de erro de captura na origem.</p>
+      </div>
+      <div class="others">
+        <p><code>qt_afericao_pressao_arterial</code> e <code>qt_glicemia</code> existem como colunas mas vêm sempre vazias — o valor real está solto em JSON em <code>propriedades</code>. Dá pra estruturar?</p>
+      </div>
+
+      <p style="margin-top:16px">Posso mandar as queries que usei pra achar cada um desses casos, se ajudar a investigar. 🙏</p>
+    </div>
+  </div>
+</div>

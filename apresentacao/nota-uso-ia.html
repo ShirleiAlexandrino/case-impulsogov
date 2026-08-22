@@ -1,0 +1,84 @@
+<title>Nota de Uso de IA</title>
+<style>
+:root{
+  --bg:#FFFFFF; --surface:#F6FAFB; --surface-2:#EAF6F8; --border:#DEE9EB;
+  --navy:#114350; --text:#1C3B44; --muted:#5B7480;
+  --teal:#2EA6BC; --teal-dark:#1B7A8C; --coral:#EF8264; --coral-dark:#C1523A;
+  --code-bg:#EEF5F6; --coral-bg:#FCEEE9;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1A1E; --surface:#15262B; --surface-2:#163038; --border:#24393F;
+    --navy:#DCEEF1; --text:#D3E6E9; --muted:#8FA9B0;
+    --teal:#52C2D6; --teal-dark:#7FD4E3; --coral:#F2916F; --coral-dark:#F6B39B;
+    --code-bg:#16282D; --coral-bg:#2A1D18;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1A1E; --surface:#15262B; --surface-2:#163038; --border:#24393F;
+  --navy:#DCEEF1; --text:#D3E6E9; --muted:#8FA9B0;
+  --teal:#52C2D6; --teal-dark:#7FD4E3; --coral:#F2916F; --coral-dark:#F6B39B;
+  --code-bg:#16282D; --coral-bg:#2A1D18;
+}
+*{box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  line-height:1.6;}
+.page{max-width:720px;margin:0 auto;padding:56px 24px 96px;}
+.wordmark{display:flex;align-items:center;font-weight:800;font-size:22px;letter-spacing:-0.01em;margin-bottom:28px;}
+.wordmark .imp,.wordmark .ulso{color:var(--navy);}
+.wordmark .gov{color:var(--teal);}
+.wordmark svg circle{stroke:var(--navy);}
+.kicker{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--teal-dark);background:var(--surface-2);padding:4px 10px;border-radius:999px;margin-bottom:14px;}
+h1{font-size:32px;font-weight:300;color:var(--navy);letter-spacing:-0.01em;margin:0 0 8px;text-wrap:balance;}
+.meta{color:var(--muted);font-size:15px;margin-bottom:36px;max-width:66ch;}
+h2{font-size:19px;font-weight:700;color:var(--navy);margin:34px 0 12px;}
+p{margin:0 0 16px;max-width:68ch;}
+strong{color:var(--navy);}
+code{font-family:ui-monospace,"Cascadia Code","Source Code Pro",Menlo,Consolas,monospace;
+  background:var(--code-bg);color:var(--teal-dark);padding:2px 6px;border-radius:4px;font-size:.88em;}
+.case{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:14px 0;}
+.case .tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+  border-radius:999px;padding:3px 10px;margin-bottom:10px;}
+.case.accept .tag{background:var(--surface-2);color:var(--teal-dark);}
+.case.fix .tag{background:var(--coral-bg);color:var(--coral-dark);}
+.case p{margin:0;}
+.example{border-left:4px solid var(--coral);background:var(--coral-bg);border-radius:8px;padding:16px 20px;margin:16px 0 0;}
+.example p:last-child{margin-bottom:0;}
+a{color:var(--teal-dark);}
+@media (max-width:640px){.page{padding:32px 16px 72px;}h1{font-size:26px;}}
+</style>
+<div class="page">
+  <div class="wordmark">
+    <span class="imp">imp</span>
+    <svg width="30" height="22" viewBox="0 0 37 27" style="margin:0 2px"><circle cx="12" cy="13.5" r="9" fill="none" stroke-width="4.5"/><circle cx="24" cy="13.5" r="9" fill="none" stroke-width="4.5"/></svg>
+    <span class="ulso">ulso</span><span class="gov">gov</span>
+  </div>
+
+  <span class="kicker">Entregável 5 · Obrigatória</span>
+  <h1>Nota sobre uso de IA</h1>
+  <p class="meta">Usei o Claude (Claude Code) do início ao fim do case: leitura do enunciado e dos arquivos de contexto, modelagem SQL das três camadas (bronze/silver/gold), diagrama de arquitetura, documentação para o time de produto e a mensagem para engenharia de dados.</p>
+
+  <h2>O que aceitei</h2>
+  <div class="case accept">
+    <span class="tag">Aceito</span>
+    <p>A estrutura de camadas e a lógica das regras de negócio — mas só depois de rodar o pipeline de verdade contra os três CSVs (não aceitei o SQL de olho): conferi contagens de linhas antes/depois da deduplicação, casos específicos de pessoas (ex. reabertura de diagnóstico após "condição resolvida"), e os números finais da lista. Também aceitei a sugestão de estruturar o diagrama de arquitetura usando os domínios do TOGAF — pedi explicitamente essa referência e a IA aplicou de forma proporcional ao tamanho do case, sem inflar em um processo ADM completo.</p>
+  </div>
+
+  <h2>O que rejeitei ou corrigi</h2>
+  <p>Duas coisas, em direções opostas:</p>
+  <div class="case fix">
+    <span class="tag">Corrigido — 1</span>
+    <p>O primeiro modelo da tabela final foi montado só a partir das regras de negócio escritas, sem comparar com o protótipo da tela aprovado pelo produto. Só percebi o problema quando perguntei diretamente "esse modelo atende a saída do protótipo?" — aí apareceram gaps reais: faltavam idade, o valor da aferição de pressão (o protótipo mostra "110/90 mmHg", não só a situação) e CPF como alternativa ao CNS. A IA não tinha comparado proativamente contra a imagem antes de propor o modelo; o problema não teria aparecido se eu não tivesse pedido essa checagem específica.</p>
+  </div>
+  <div class="case fix">
+    <span class="tag">Corrigido — 2</span>
+    <p>Cheguei a sugerir inferir a microárea (que falta nos dados brutos) a partir do DDD do telefone do cidadão. A IA verificou contra os dados reais — 1.200 telefones distintos para 1.200 pessoas, DDDs sem correlação nem dentro da mesma equipe de saúde — e me mostrou que a ideia não se sustentava. Descartei e documentei a ausência da microárea como limitação em vez de mascará-la.</p>
+  </div>
+
+  <h2>Exemplo concreto de erro</h2>
+  <div class="example">
+    <p>O caso 1 acima: o modelo de dados inicial, gerado com IA, não cobria todos os campos que a tela já aprovada exigia. Só percebi comparando explicitamente contra o protótipo — lição prática de que <strong>"a regra de negócio está implementada certo"</strong> e <strong>"o produto está atendido"</strong> são verificações diferentes, e a segunda não acontece sozinha.</p>
+  </div>
+</div>

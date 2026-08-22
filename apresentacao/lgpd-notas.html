@@ -1,0 +1,110 @@
+<title>LGPD — Lista Nominal</title>
+<style>
+:root{
+  --bg:#FFFFFF; --surface:#F6FAFB; --surface-2:#EAF6F8; --border:#DEE9EB;
+  --navy:#114350; --text:#1C3B44; --muted:#5B7480;
+  --teal:#2EA6BC; --teal-dark:#1B7A8C; --coral:#EF8264; --coral-dark:#C1523A;
+  --code-bg:#EEF5F6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1A1E; --surface:#15262B; --surface-2:#163038; --border:#24393F;
+    --navy:#DCEEF1; --text:#D3E6E9; --muted:#8FA9B0;
+    --teal:#52C2D6; --teal-dark:#7FD4E3; --coral:#F2916F; --coral-dark:#F6B39B;
+    --code-bg:#16282D;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1A1E; --surface:#15262B; --surface-2:#163038; --border:#24393F;
+  --navy:#DCEEF1; --text:#D3E6E9; --muted:#8FA9B0;
+  --teal:#52C2D6; --teal-dark:#7FD4E3; --coral:#F2916F; --coral-dark:#F6B39B;
+  --code-bg:#16282D;
+}
+*{box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  line-height:1.6;}
+.page{max-width:760px;margin:0 auto;padding:56px 24px 96px;}
+.wordmark{display:flex;align-items:center;font-weight:800;font-size:22px;letter-spacing:-0.01em;margin-bottom:28px;}
+.wordmark .imp,.wordmark .ulso{color:var(--navy);}
+.wordmark .gov{color:var(--teal);}
+.wordmark svg circle{stroke:var(--navy);}
+.kicker{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--teal-dark);background:var(--surface-2);padding:4px 10px;border-radius:999px;margin-bottom:14px;}
+h1{font-size:32px;font-weight:300;color:var(--navy);letter-spacing:-0.01em;margin:0 0 8px;text-wrap:balance;}
+.meta{color:var(--muted);font-size:15px;margin-bottom:40px;max-width:66ch;}
+h2{font-size:20px;font-weight:700;color:var(--navy);margin:40px 0 14px;padding-top:20px;border-top:1px solid var(--border);}
+h2:first-of-type{border-top:none;padding-top:0;}
+p{margin:0 0 16px;max-width:70ch;}
+strong{color:var(--navy);}
+ul{padding-left:22px;margin:0 0 16px;}
+li{margin-bottom:8px;max-width:66ch;}
+code{font-family:ui-monospace,"Cascadia Code","Source Code Pro",Menlo,Consolas,monospace;
+  background:var(--code-bg);color:var(--teal-dark);padding:2px 6px;border-radius:4px;font-size:.88em;}
+table{width:100%;border-collapse:collapse;margin:18px 0 26px;font-size:14.5px;}
+th{text-align:left;background:var(--surface-2);color:var(--navy);font-weight:700;padding:10px 12px;border-bottom:2px solid var(--border);}
+td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top;}
+tr:last-child td{border-bottom:none;}
+.badge{display:inline-block;font-size:12px;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:6px;}
+.badge.sensitive{background:var(--coral);color:#fff;}
+.badge.direct{background:var(--navy);color:#fff;}
+.badge.indirect{background:var(--surface-2);color:var(--teal-dark);}
+.legal{background:var(--surface-2);border-left:4px solid var(--teal);border-radius:8px;padding:14px 20px;margin:14px 0;}
+.legal p{margin:0;}
+.legal b{color:var(--navy);}
+.scope-out{border:1px dashed var(--border);border-radius:10px;padding:16px 20px;margin:16px 0;}
+.scope-out li{color:var(--muted);}
+.scope-out li strong{color:var(--text);}
+a{color:var(--teal-dark);}
+@media (max-width:640px){.page{padding:32px 16px 72px;}h1{font-size:26px;}}
+</style>
+<div class="page">
+  <div class="wordmark">
+    <span class="imp">imp</span>
+    <svg width="30" height="22" viewBox="0 0 37 27" style="margin:0 2px"><circle cx="12" cy="13.5" r="9" fill="none" stroke-width="4.5"/><circle cx="24" cy="13.5" r="9" fill="none" stroke-width="4.5"/></svg>
+    <span class="ulso">ulso</span><span class="gov">gov</span>
+  </div>
+
+  <span class="kicker">Adicional · Privacidade e proteção de dados</span>
+  <h1>Aplicação de LGPD na Lista Nominal de Hipertensão</h1>
+  <p class="meta">Complemento aos cinco entregáveis do case — classificação de dado, base legal e as camadas de minimização de dados aplicadas em <code>sql/05_privacidade_lgpd.sql</code>.</p>
+
+  <h2>Classificação do dado</h2>
+  <p>A tabela <code>gold_lista_nominal_hipertensao</code> contém:</p>
+  <p><span class="badge sensitive">Sensível</span> Condição de saúde (hipertensão, LGPD art. 5º, II) e histórico de acompanhamento clínico de cada pessoa.</p>
+  <p><span class="badge direct">Direto</span> Identificadores diretos: nome, CPF, CNS, telefone celular.</p>
+  <p><span class="badge indirect">Indireto</span> <code>co_fat_cidadao_pec</code> — não identifica sozinho, mas combinado com as demais colunas, sim.</p>
+  <p>Dado de saúde tem tratamento mais restrito na LGPD (art. 11) do que dado pessoal comum — por isso vale tratar essa tabela com cuidado redobrado, mesmo sendo um case técnico com dado fictício.</p>
+
+  <h2>Base legal</h2>
+  <p>O tratamento aqui serve ao acompanhamento clínico de pessoas com hipertensão por uma equipe de saúde da família, dentro do SUS.</p>
+  <div class="legal"><p><b>Art. 11, II, "f"</b> — tutela da saúde, exclusivamente em procedimento realizado por profissionais de saúde, serviços de saúde ou autoridade sanitária.</p></div>
+  <div class="legal"><p><b>Art. 7º, III</b> (subsidiariamente) — execução de políticas públicas pela administração pública.</p></div>
+  <p>Isso justifica reunir nome, CPF/CNS, telefone e situação de saúde numa única tela: sem esses dados juntos, a equipe não consegue localizar e agir sobre a pessoa, que é o propósito declarado da lista nominal. Não seria justificativa válida para reunir os mesmos dados num relatório de BI que não precisa agir sobre indivíduos — daí a separação em camadas abaixo.</p>
+
+  <h2>O que foi aplicado</h2>
+  <p>Minimização de dados (art. 6º, III) por finalidade de acesso, em três camadas:</p>
+  <table>
+    <tr><th>Camada</th><th>Finalidade</th><th>O que expõe</th></tr>
+    <tr><td><code>gold_lista_nominal_hipertensao</code></td><td>Ação operacional da equipe (ligar, agendar, visitar)</td><td>Identificação completa — é a única camada que precisa disso</td></tr>
+    <tr><td><code>..._mascarado</code></td><td>Suporte/QA — localizar um caso para investigar</td><td>Nome (conferência humana) + CPF/CNS mascarados; <strong>sem telefone</strong></td></tr>
+    <tr><td><code>..._analitico</code></td><td>Gestão agregada, cobertura do programa</td><td>Nenhum identificador — só equipe, faixa etária e os três status</td></tr>
+  </table>
+  <p>O princípio: cada consumidor recebe o mínimo necessário para sua finalidade, não o máximo disponível. A query de métricas do entregável 2 (<code>sql/04_metricas.sql</code>) já seguia essa lógica antes mesmo desta camada — nunca usou nome, CPF, CNS ou telefone.</p>
+
+  <h2>Controle de acesso — implementado no app, não no banco</h2>
+  <p>Quando esta nota foi escrita, "quem pode consultar cada view" estava listado como fora do escopo. Isso mudou: o <code>app.py</code> (Streamlit) agora aplica controle de acesso por perfil, usando <code>nu_ine</code> como identidade.</p>
+  <div class="legal"><p><b>Perfil de equipe</b> — só acessa a Lista nominal e o Painel de cobertura da própria equipe.</p></div>
+  <div class="legal"><p><b>Perfil de gestão</b> — acessa o Painel de cobertura de todas as equipes, mas <strong>não</strong> tem acesso à Lista nominal identificada de nenhuma equipe — só a <code>..._analitico</code>, sem identificador.</p></div>
+  <p>Continua sendo controle de acesso <strong>na aplicação</strong>, não no banco — as views SQL não têm RLS/roles própria; uma conexão direta ao banco ainda enxerga tudo. Em produção com um SGBD real, vale replicar essa regra como papéis/roles no banco.</p>
+
+  <h2>O que continua fora do escopo</h2>
+  <div class="scope-out">
+    <ul>
+      <li><strong>Retenção e descarte</strong> — por quanto tempo manter o histórico de uma pessoa após ela sair da lista é decisão de política de dados, não de SQL nem do app.</li>
+      <li><strong>Log de acesso/auditoria</strong> sobre quem consultou dado sensível de quem — o app não registra quem logou como qual equipe nem quando.</li>
+      <li><strong>Canal para direitos do titular</strong> (acesso, correção, exclusão) — depende de processo organizacional, não da tabela ou do app em si.</li>
+    </ul>
+  </div>
+  <p>Esses três pontos ficam como recomendação para o time de dados e o DPO/encarregado da organização — não são algo que uma modelagem SQL ou um front-end resolvem sozinhos.</p>
+</div>

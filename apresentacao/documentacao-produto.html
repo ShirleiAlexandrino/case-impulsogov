@@ -1,0 +1,115 @@
+<title>Notas de Produto — Hipertensão</title>
+<style>
+:root{
+  --bg:#FFFFFF; --surface:#F6FAFB; --surface-2:#EAF6F8; --border:#DEE9EB;
+  --navy:#114350; --text:#1C3B44; --muted:#5B7480;
+  --teal:#2EA6BC; --teal-dark:#1B7A8C; --coral:#EF8264; --coral-dark:#C1523A;
+  --code-bg:#EEF5F6; --coral-bg:#FCEEE9;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1A1E; --surface:#15262B; --surface-2:#163038; --border:#24393F;
+    --navy:#DCEEF1; --text:#D3E6E9; --muted:#8FA9B0;
+    --teal:#52C2D6; --teal-dark:#7FD4E3; --coral:#F2916F; --coral-dark:#F6B39B;
+    --code-bg:#16282D; --coral-bg:#2A1D18;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1A1E; --surface:#15262B; --surface-2:#163038; --border:#24393F;
+  --navy:#DCEEF1; --text:#D3E6E9; --muted:#8FA9B0;
+  --teal:#52C2D6; --teal-dark:#7FD4E3; --coral:#F2916F; --coral-dark:#F6B39B;
+  --code-bg:#16282D; --coral-bg:#2A1D18;
+}
+*{box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  line-height:1.6;}
+.page{max-width:760px;margin:0 auto;padding:56px 24px 96px;}
+.wordmark{display:flex;align-items:center;font-weight:800;font-size:22px;letter-spacing:-0.01em;margin-bottom:28px;}
+.wordmark .imp,.wordmark .ulso{color:var(--navy);}
+.wordmark .gov{color:var(--teal);}
+.wordmark svg circle{stroke:var(--navy);}
+.kicker{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--teal-dark);background:var(--surface-2);padding:4px 10px;border-radius:999px;margin-bottom:14px;}
+h1{font-size:32px;font-weight:300;color:var(--navy);letter-spacing:-0.01em;margin:0 0 8px;text-wrap:balance;}
+.meta{color:var(--muted);font-size:15px;margin-bottom:40px;max-width:66ch;}
+h2{font-size:20px;font-weight:700;color:var(--navy);margin:40px 0 14px;padding-top:20px;border-top:1px solid var(--border);}
+h2:first-of-type{border-top:none;padding-top:0;}
+p{margin:0 0 16px;max-width:68ch;}
+strong{color:var(--navy);}
+ul,ol{padding-left:22px;margin:0 0 16px;}
+li{margin-bottom:8px;max-width:64ch;}
+code{font-family:ui-monospace,"Cascadia Code","Source Code Pro",Menlo,Consolas,monospace;
+  background:var(--code-bg);color:var(--teal-dark);padding:2px 6px;border-radius:4px;font-size:.88em;}
+table{width:100%;border-collapse:collapse;margin:18px 0 26px;font-size:14.5px;}
+th{text-align:left;background:var(--surface-2);color:var(--navy);font-weight:700;padding:10px 12px;border-bottom:2px solid var(--border);}
+td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top;}
+tr:last-child td{border-bottom:none;}
+.stat{display:inline-flex;flex-direction:column;background:var(--surface-2);border-radius:10px;padding:14px 20px;margin:8px 0 24px;}
+.stat .n{font-size:28px;font-weight:800;color:var(--navy);}
+.stat .l{font-size:13px;color:var(--muted);}
+.callout{background:var(--surface-2);border-left:4px solid var(--teal);border-radius:8px;padding:16px 20px;margin:16px 0;}
+.callout.decided{border-left-color:var(--teal);}
+.callout p:last-child{margin-bottom:0;}
+.callout-title{font-weight:700;color:var(--navy);display:block;margin-bottom:6px;}
+.discarded{background:var(--coral-bg);border-left:4px solid var(--coral);border-radius:8px;padding:12px 18px;margin:10px 0 0;font-size:14.5px;}
+.discarded b{color:var(--coral-dark);}
+.rec{display:flex;gap:14px;margin:16px 0;padding:16px 18px;background:var(--surface);border:1px solid var(--border);border-radius:10px;}
+.rec .n{font-size:22px;font-weight:800;color:var(--teal);min-width:28px;}
+.rec p{margin:0;}
+a{color:var(--teal-dark);}
+@media (max-width:640px){.page{padding:32px 16px 72px;}h1{font-size:26px;}}
+</style>
+<div class="page">
+  <div class="wordmark">
+    <span class="imp">imp</span>
+    <svg width="30" height="22" viewBox="0 0 37 27" style="margin:0 2px"><circle cx="12" cy="13.5" r="9" fill="none" stroke-width="4.5"/><circle cx="24" cy="13.5" r="9" fill="none" stroke-width="4.5"/></svg>
+    <span class="ulso">ulso</span><span class="gov">gov</span>
+  </div>
+
+  <span class="kicker">Entregável 3 · Para o time de produto</span>
+  <h1>Lista Nominal de Hipertensão</h1>
+  <p class="meta">Esta tabela alimenta a tela da Lista Nominal de Hipertensão. Para cada pessoa elegível, ela traz os dados de identificação e contato e a situação das três boas práticas de acompanhamento, com posição em <strong>01/08/2026</strong> — a data do retrato de dados analisado. A cada nova carga (as cargas são mensais), a tabela é recalculada com uma nova data de referência.</p>
+
+  <div class="stat"><span class="n">325</span><span class="l">pessoas na lista neste retrato</span></div>
+
+  <h2>Quem entra e quem sai da lista</h2>
+  <p><strong>Entra</strong> quem já teve, em qualquer momento do histórico, um diagnóstico de hipertensão registrado por médico ou enfermeiro. Não há prazo de validade: é condição crônica, então um diagnóstico de anos atrás continua valendo.</p>
+  <p><strong>Sai</strong> quem faleceu, ou cujo registro mais recente relacionado à hipertensão é uma marcação de "condição resolvida" feita pelo profissional.</p>
+
+  <h2>As três boas práticas</h2>
+  <table>
+    <tr><th>Boa prática</th><th>Prazo considerado</th><th>Quem conta</th></tr>
+    <tr><td>Consulta</td><td>últimos 6 meses</td><td>médico ou enfermeiro</td></tr>
+    <tr><td>Aferição de pressão</td><td>últimos 6 meses</td><td>médico, enfermeiro ou técnico de enfermagem</td></tr>
+    <tr><td>Peso e altura (no mesmo dia)</td><td>últimos 12 meses</td><td>os anteriores + agente comunitário de saúde</td></tr>
+  </table>
+  <p>Cada uma recebe um dos três status: <strong>Em dia</strong> (último registro dentro do prazo), <strong>Atrasada</strong> (existe registro, mas fora do prazo) ou <strong>Nunca realizada</strong> (não existe nenhum registro no histórico). Uma observação: "Nunca realizada" nunca vai aparecer para Consulta — o próprio critério de entrada na lista já exige que a pessoa tenha tido uma consulta com médico ou enfermeiro, então esse cruzamento é impossível por definição, não um erro na tela.</p>
+
+  <h2>Decisões ambíguas</h2>
+  <div class="callout decided">
+    <span class="callout-title">1. Reabertura de caso</span>
+    <p>Encontramos pessoas marcadas como "condição resolvida" e, depois, diagnosticadas novamente com hipertensão — um caso real neste retrato, não hipotético. Adotamos a regra "o registro mais recente manda": se a pessoa foi rediagnosticada, ela volta para a lista.</p>
+    <div class="discarded"><b>Descartado:</b> "resolvida uma vez, sai para sempre" — deixaria pessoas com hipertensão ativa sem acompanhamento, o oposto do que a lista existe para fazer.</div>
+  </div>
+  <div class="callout decided">
+    <span class="callout-title">2. Território / microárea</span>
+    <p>O protótipo tem um filtro por microárea, mas esse dado não existe nos arquivos recebidos — só temos a equipe de saúde da família, que é um nível acima. Avaliamos aproximar a microárea a partir do DDD do telefone da pessoa.</p>
+    <div class="discarded"><b>Descartado:</b> DDD é código de telefonia, sem relação com o território sanitário — nos dados, nem a própria equipe da pessoa tem DDD consistente. Preferimos não ter o filtro a ter um filtro que agrupa gente errada, numa ferramenta cujo uso é decidir quem visitar.</div>
+  </div>
+
+  <h2>Limitações</h2>
+  <ul>
+    <li><strong>Sem filtro por microárea</strong> (ver decisão acima). O filtro por equipe continua disponível.</li>
+    <li><strong>Idade calculada em relação a 01/08/2026</strong>, não à data em que a tela é aberta. A cada atualização de dados, precisa ser recalculada junto.</li>
+    <li><strong>O valor da pressão é exibido cru</strong>, como veio do registro (ex. "150/70"). Não há hoje nenhum destaque para leituras em faixa de crise hipertensiva — ver recomendação abaixo.</li>
+    <li><strong>Consistência de nomes de equipe</strong>: encontramos o mesmo código de equipe grafado de formas diferentes entre cargas (ex. "ESF 2" e "Esf 2"); tratamos isso no pipeline, mas é um sintoma de qualidade de dado na origem, não algo que o produto precise resolver.</li>
+    <li><strong>Duas equipes reais compartilham o mesmo nome.</strong> Existem duas equipes distintas — código (<code>nu_ine</code>) e cadastro diferentes — ambas chamadas "ESF 5" na base. Qualquer filtro ou relatório agrupado por <strong>nome</strong>, em vez do código, mistura as duas sem aviso. Tratamos isso no app usando sempre o código como identidade, mas "nome da equipe" nunca deveria ser tratado como identificador único em telas ou relatórios futuros.</li>
+  </ul>
+
+  <h2>Recomendações</h2>
+  <div class="rec"><span class="n">1</span><p><strong>Pedir ao time de engenharia de dados</strong> para confirmar se a microárea pode ser incluída na próxima extração — ela é registrada operacionalmente pelo agente comunitário de saúde no e-SUS PEC, então é provável que só não tenha vindo nesta base.</p></div>
+  <div class="rec"><span class="n">2</span><p><strong>Considerar destacar visualmente</strong> quando a última aferição de pressão estiver em faixa de crise hipertensiva (ex. sistólica ≥ 180 ou diastólica ≥ 120), para priorização imediata pela equipe. Hoje só mostramos o valor, sem nenhum sinal de urgência.</p></div>
+  <div class="rec"><span class="n">3</span><p><strong>Alinhar a cadência de atualização</strong> com quem vai usar a tela: como a base é recarregada mensalmente, vale deixar claro qual é a "idade" máxima da informação exibida.</p></div>
+  <div class="rec"><span class="n">4</span><p><strong>Nunca usar nome de equipe como identificador</strong> em telas ou relatórios futuros — usar sempre o código (<code>nu_ine</code>). O caso das duas equipes "ESF 5" mostra que o nome sozinho já causa erro real hoje.</p></div>
+</div>
