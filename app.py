@@ -11,7 +11,7 @@ Duas visões:
   contexto/prototipo-lista-nominal.png) — identificação completa, porque é o
   que a equipe de saúde precisa pra agir sobre a pessoa.
 - "Painel de cobertura": visão agregada sem identificação, usando a view
-  gold_lista_nominal_hipertensao_analitico (ver lgpd-notas.md).
+  gold_lista_nominal_hipertensao_analitico (ver extras/lgpd-notas.md).
 """
 
 from pathlib import Path
@@ -182,7 +182,7 @@ st.markdown(WORDMARK, unsafe_allow_html=True)
 # escolha real de superfície de exposição — decidimos assim porque um
 # coordenador precisa localizar qualquer pessoa em qualquer equipe pra
 # supervisionar, base legal equivalente à do perfil de equipe (art. 11, II,
-# "f" / art. 7º, III — ver lgpd-notas.md). Vale revisitar se a organização
+# "f" / art. 7º, III — ver extras/lgpd-notas.md). Vale revisitar se a organização
 # quiser um perfil de gestão mais restrito.
 # ============================================================================
 GESTAO = "GESTAO_GLOBAL"
@@ -244,7 +244,7 @@ st.caption(f"{nome_equipe_logada} · Acompanhamento das boas práticas por pesso
 
 # O perfil de gestão não acessa dado sensível/identificado: sem a Lista
 # nominal (nome, CPF, CNS, telefone), só o Painel de cobertura agregado —
-# mesmo princípio de minimização de dados de lgpd-notas.md, aplicado agora
+# mesmo princípio de minimização de dados de extras/lgpd-notas.md, aplicado agora
 # também ao controle de acesso do app, não só às views SQL.
 if eh_gerencial:
     st.info(
@@ -273,7 +273,7 @@ if aba_lista is not None:
             "Microárea",
             ["Todas"],
             disabled=True,
-            help="Não existe nos dados de origem — ver limitação em documentacao-produto.md",
+            help="Não existe nos dados de origem — ver limitação em entregaveis/03-documentacao-produto.md",
         )
     with col3:
         faixa_sel = st.selectbox("Faixa etária", ["Todas"] + FAIXAS_ETARIAS)
@@ -350,14 +350,14 @@ with aba_painel:
         st.caption(
             "Performance global — todas as equipes. Sem nome, documento ou "
             "telefone, mesmo para o perfil de gestão. Usa "
-            "gold_lista_nominal_hipertensao_analitico (ver lgpd-notas.md, princípio de "
+            "gold_lista_nominal_hipertensao_analitico (ver extras/lgpd-notas.md, princípio de "
             "minimização de dados)."
         )
     else:
         st.caption(
             f"Cobertura da equipe {nome_equipe_logada} — mesmo controle de acesso da Lista "
             "nominal (por nu_ine), aqui sem nome, documento ou telefone. Usa "
-            "gold_lista_nominal_hipertensao_analitico (ver lgpd-notas.md, princípio de "
+            "gold_lista_nominal_hipertensao_analitico (ver extras/lgpd-notas.md, princípio de "
             "minimização de dados)."
         )
 

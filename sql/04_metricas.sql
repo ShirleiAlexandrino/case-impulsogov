@@ -7,14 +7,20 @@ SELECT count(*) AS total_pessoas_na_lista
 FROM gold_lista_nominal_hipertensao;
 
 -- Distribuição de status por boa prática.
-SELECT 'Consulta' AS boa_pratica, status_consulta AS status, count(*) AS pessoas
-FROM gold_lista_nominal_hipertensao GROUP BY status_consulta
-UNION ALL
-SELECT 'Aferição de pressão', status_afericao_pressao, count(*)
-FROM gold_lista_nominal_hipertensao GROUP BY status_afericao_pressao
-UNION ALL
-SELECT 'Peso e altura', status_peso_altura, count(*)
-FROM gold_lista_nominal_hipertensao GROUP BY status_peso_altura
+-- UNION ALL isolado numa CTE porque o ORDER BY com CASE só resolve a coluna
+-- "status" se aplicado por fora do UNION, não encadeado direto após ele.
+WITH distribuicao AS (
+    SELECT 'Consulta' AS boa_pratica, status_consulta AS status, count(*) AS pessoas
+    FROM gold_lista_nominal_hipertensao GROUP BY status_consulta
+    UNION ALL
+    SELECT 'Aferição de pressão', status_afericao_pressao, count(*)
+    FROM gold_lista_nominal_hipertensao GROUP BY status_afericao_pressao
+    UNION ALL
+    SELECT 'Peso e altura', status_peso_altura, count(*)
+    FROM gold_lista_nominal_hipertensao GROUP BY status_peso_altura
+)
+SELECT boa_pratica, status, pessoas
+FROM distribuicao
 ORDER BY 1,
     CASE status
         WHEN 'EM DIA' THEN 1

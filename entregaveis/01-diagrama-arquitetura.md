@@ -73,7 +73,7 @@ flowchart TB
 | Critério de entrada (diagnóstico de hipertensão por médico/enfermeiro) e saída (óbito ou condição resolvida) da lista | **Gold** | Depende da combinação de eventos ao longo do histórico da pessoa — só é possível decidir depois que os fatos já estão limpos e consolidados. |
 | Cálculo dos três status (Em dia / Atrasada / Nunca realizada) das boas práticas | **Gold** | Mesma razão: é a regra que transforma fatos silver em informação de negócio, específica desta tabela de destino. |
 
-Detalhes de implementação e decisões documentadas em comentário SQL: [`sql/02_silver.sql`](sql/02_silver.sql) e [`sql/03_gold.sql`](sql/03_gold.sql).
+Detalhes de implementação e decisões documentadas em comentário SQL: [`sql/02_silver.sql`](../sql/02_silver.sql) e [`sql/03_gold.sql`](../sql/03_gold.sql).
 
 ## Schema da tabela final — `gold_lista_nominal_hipertensao`
 
