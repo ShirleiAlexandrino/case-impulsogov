@@ -24,16 +24,11 @@ aplicada a todos os artefatos que existem hoje no repositório.
 ```mermaid
 flowchart TB
 
-    subgraph TECH["Technology Architecture"]
+    subgraph TECH_PIPE["Technology — alimentação do pipeline"]
         direction LR
         CSV["Exportação e-SUS PEC<br/>(CSVs)"]
         ENGINE["Motor SQL — DuckDB<br/>(in-memory, por sessão)"]
-        REPO["GitHub — case-impulsogov"]
-        CLOUD["Streamlit Community Cloud"]
-        BROWSER["Navegador do usuário"]
         CSV --> ENGINE
-        REPO -- "push" --> CLOUD
-        CLOUD -- "serve" --> BROWSER
     end
 
     subgraph DATA["Data Architecture — pipeline medalhão"]
@@ -86,6 +81,15 @@ flowchart TB
         GUARD --> STREAMLIT
         STREAMLIT --> LISTA
         STREAMLIT --> PAINEL
+    end
+
+    subgraph TECH_SERVE["Technology — atendimento ao negócio"]
+        direction LR
+        REPO["GitHub — case-impulsogov"]
+        CLOUD["Streamlit Community Cloud"]
+        BROWSER["Navegador do usuário"]
+        REPO -- "push" --> CLOUD
+        CLOUD -- "serve" --> BROWSER
     end
 
     subgraph BIZ["Business Architecture"]
@@ -199,14 +203,24 @@ no DuckDB in-memory).
 
 ## 4. Technology Architecture
 
-**Catálogo de tecnologia**
+Duas raias, separadas no diagrama porque servem propósitos diferentes: uma
+processa dado (roda a cada sessão do app), a outra distribui o app até o
+usuário (roda uma vez por deploy).
+
+**Catálogo — alimentação do pipeline**
 
 | Camada | Tecnologia | Papel |
 |---|---|---|
+| Fonte | CSVs do e-SUS PEC | Exportação mensal, sem tratamento |
 | Motor de dados | DuckDB (in-process, in-memory) | Executa as 6 camadas SQL a cada boot do app |
-| Front-end | Streamlit | Renderiza UI, gerencia sessão/login, gráficos (Altair) |
-| Hospedagem do app | Streamlit Community Cloud | Build a partir do repositório Git, redeploy automático em push na `main` |
+
+**Catálogo — atendimento ao negócio**
+
+| Camada | Tecnologia | Papel |
+|---|---|---|
 | Controle de versão | GitHub (`ShirleiAlexandrino/case-impulsogov`, público) | Fonte única — código, SQL e dados fictícios versionados juntos |
+| Hospedagem do app | Streamlit Community Cloud | Build a partir do repositório Git, redeploy automático em push na `main` |
+| Front-end | Streamlit | Renderiza UI, gerencia sessão/login, gráficos (Altair) |
 | CI/build | Nenhum pipeline dedicado — o próprio deploy do Streamlit Cloud instala `requirements.txt` e roda `app.py` | — |
 
 **Diagrama de implantação**
