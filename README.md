@@ -2,6 +2,17 @@
 
 **Aplicação publicada:** https://case-impulsogov-shirlei-alexandrino.streamlit.app/
 
+## Sobre esta entrega
+
+Este repositório é minha resolução completa do case abaixo: pipeline
+medalhão (bronze/silver/gold) em DuckDB, 325 pessoas na lista final, e um
+app Streamlit publicado com controle de acesso por perfil. Os cinco
+entregáveis pedidos estão documentados em
+[`entregaveis/README.md`](entregaveis/README.md); a partir daqui em diante
+é o enunciado original do case, mantido como recebido.
+
+---
+
 Obrigado pelo interesse na vaga. Este case simula uma tarefa real do time:
 transformar dados brutos da atenção primária em uma tabela que sustenta um
 produto usado por equipes de saúde.
