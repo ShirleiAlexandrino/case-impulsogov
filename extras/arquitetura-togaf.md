@@ -17,7 +17,7 @@ aplicada a todos os artefatos que existem hoje no repositório.
 | **Problema de negócio** | Equipes de saúde da família precisam saber, a qualquer momento, quem na lista de hipertensos está com acompanhamento em dia, atrasado ou nunca realizado. |
 | **Stakeholders** | Enfermeiro/ACS da eSF (usuário operacional), gestão (visão agregada), time de produto, time de engenharia de dados (origem do dado), encarregado/DPO (LGPD). |
 | **Escopo desta versão** | Da extração bruta do e-SUS PEC até duas superfícies de consumo: a tela operacional (Lista Nominal) e o painel gerencial — publicadas como app web. |
-| **Fora de escopo** | Ingestão automatizada/agendada, banco de produção real, autenticação corporativa (SSO), log de auditoria — ver limitações em cada seção. |
+| **Fora de escopo** | Ingestão automatizada/agendada, banco de produção real, autenticação corporativa (SSO), log de auditoria, retenção/descarte de dado, canal para direitos do titular — ver limitações em cada seção e detalhe LGPD em [`lgpd-notas.md`](lgpd-notas.md#o-que-continua-fora-do-escopo). |
 
 ## Diagrama
 
@@ -88,7 +88,7 @@ flowchart TB
     ENGINE -. executa .-> APP_PIPE
     JOBS --> DATA
     PRIV --> LGPDVIEWS
-    GUARD -- valida --> DATA
+    DATA -. "lida e validada por" .-> GUARD
     GUARD -. "bloqueia init do app se falhar" .-> STREAMLIT
     METRICS -. "lê (offline)" .-> G1
 
@@ -125,12 +125,17 @@ flowchart TB
 
 ## 1. Business Architecture
 
-**Catálogo de atores e papéis**
+**Catálogo de atores do sistema** (usam o app diretamente)
 
 | Ator | Papel | Acessa |
 |---|---|---|
 | Enfermeiro / ACS da eSF | Ação sobre a própria equipe — ligar, agendar, visitar | Lista nominal identificada da própria equipe (`nu_ine`) |
 | Gestão | Supervisão de todas as equipes, sem agir sobre indivíduo | Painel agregado de todas as equipes, sem identificação |
+
+**Stakeholders** (não acessam o app — consomem os entregáveis)
+
+| Stakeholder | Papel | Onde se informa |
+|---|---|---|
 | Time de produto | Dono da tela, decide regras de negócio e prioriza melhorias | `entregaveis/03-documentacao-produto.md` |
 | Time de engenharia de dados | Origem do dado bruto (e-SUS PEC) | `entregaveis/04-mensagem-engenharia-dados.md` |
 | Encarregado/DPO | Garante conformidade LGPD do tratamento | `extras/lgpd-notas.md` |
