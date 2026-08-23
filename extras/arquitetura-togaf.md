@@ -19,6 +19,89 @@ aplicada a todos os artefatos que existem hoje no repositório.
 | **Escopo desta versão** | Da extração bruta do e-SUS PEC até duas superfícies de consumo: a tela operacional (Lista Nominal) e o painel gerencial — publicadas como app web. |
 | **Fora de escopo** | Ingestão automatizada/agendada, banco de produção real, autenticação corporativa (SSO), log de auditoria — ver limitações em cada seção. |
 
+## Diagrama
+
+```mermaid
+flowchart TB
+
+    subgraph TECH["Technology Architecture"]
+        direction LR
+        CSV["Exportação e-SUS PEC<br/>(CSVs)"]
+        ENGINE["Motor SQL — DuckDB<br/>(in-memory, por sessão)"]
+        REPO["GitHub — case-impulsogov"]
+        CLOUD["Streamlit Community Cloud"]
+        BROWSER["Navegador do usuário"]
+        CSV --> ENGINE
+        REPO -- "push" --> CLOUD
+        CLOUD -- "serve" --> BROWSER
+    end
+
+    subgraph DATA["Data Architecture — pipeline medalhão"]
+        direction TB
+
+        subgraph BRONZE["Bronze"]
+            direction LR
+            B1["bronze_cidadao_pec"]
+            B2["bronze_atendimento_individual"]
+            B3["bronze_procedimentos"]
+        end
+
+        subgraph SILVER["Silver"]
+            direction LR
+            S1["silver_cidadao"]
+            S2["silver_atendimento_individual"]
+            S3["silver_procedimentos"]
+        end
+
+        subgraph GOLD["Gold"]
+            G1["gold_lista_nominal_hipertensao<br/>(identificação completa)"]
+        end
+
+        subgraph LGPDVIEWS["Gold — minimização LGPD"]
+            direction LR
+            GM["..._mascarado<br/>(suporte/QA)"]
+            GA["..._analitico<br/>(gestão)"]
+        end
+
+        B1 --> S1
+        B2 --> S2
+        B3 --> S3
+        S1 --> G1
+        S2 --> G1
+        S3 --> G1
+        G1 --> GM
+        G1 --> GA
+    end
+
+    subgraph APP["Application Architecture"]
+        direction LR
+        JOBS["sql/01–04<br/>ingestão · limpeza · regra · métricas"]
+        PRIV["sql/05<br/>views LGPD"]
+        GUARD["sql/06<br/>guardrails"]
+        STREAMLIT["app.py<br/>login por nu_ine · 2 perfis"]
+        JOBS --> STREAMLIT
+        PRIV --> STREAMLIT
+        GUARD --> STREAMLIT
+    end
+
+    subgraph BIZ["Business Architecture"]
+        direction LR
+        EQUIPE["Enfermeiro / ACS da eSF"]
+        GESTAO_ATOR["Gestão"]
+        SERVICO["Gestão do cuidado de<br/>pessoas com hipertensão"]
+        EQUIPE --> SERVICO
+        GESTAO_ATOR --> SERVICO
+    end
+
+    ENGINE --> DATA
+    DATA --> APP
+    CLOUD -. executa .-> STREAMLIT
+    STREAMLIT --> ENGINE
+    BROWSER --> EQUIPE
+    BROWSER --> GESTAO_ATOR
+    APP --> BIZ
+```
+
 ## 1. Business Architecture
 
 **Catálogo de atores e papéis**
