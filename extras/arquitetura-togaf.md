@@ -68,20 +68,25 @@ flowchart TB
         G1 --> GA
     end
 
-    subgraph APP["Application Architecture"]
-        direction TB
+    subgraph APP_PIPE["Application — construção do pipeline (jobs SQL)"]
+        direction LR
         JOBS["sql/01–04<br/>ingestão · limpeza · regra · métricas"]
         PRIV["sql/05<br/>views LGPD"]
         GUARD["sql/06<br/>guardrails"]
+    end
+
+    subgraph APP_SERVE["Application — atendimento ao negócio"]
+        direction TB
         STREAMLIT["app.py — login por nu_ine"]
         LISTA["Aba Lista nominal<br/>(só existe p/ perfil equipe)"]
         PAINEL["Aba Painel de cobertura<br/>(equipe e gestão, conteúdo distinto)"]
-        JOBS --> STREAMLIT
-        PRIV --> STREAMLIT
-        GUARD --> STREAMLIT
         STREAMLIT --> LISTA
         STREAMLIT --> PAINEL
     end
+
+    JOBS --> STREAMLIT
+    PRIV --> STREAMLIT
+    GUARD --> STREAMLIT
 
     subgraph TECH_SERVE["Technology — atendimento ao negócio"]
         direction LR
@@ -168,7 +173,11 @@ derivam de `gold_lista_nominal_hipertensao`, não da Silver.
 
 ## 3. Application Architecture
 
-**Catálogo de componentes de aplicação**
+Mesma lógica da seção 4: uma parte constrói o pipeline (jobs SQL, rodam a
+cada boot do app), a outra atende o negócio (o app Streamlit em si, que o
+usuário efetivamente abre).
+
+**Catálogo — construção do pipeline (jobs SQL)**
 
 | Componente | Arquivo | Função |
 |---|---|---|
@@ -178,7 +187,12 @@ derivam de `gold_lista_nominal_hipertensao`, não da Silver.
 | Relatório | `sql/04_metricas.sql` | Números do entregável 2 (contagem + distribuição) |
 | Minimização de dado | `sql/05_privacidade_lgpd.sql` | As 2 views derivadas por finalidade |
 | Qualidade | `sql/06_guardrails.sql` | Assertions bloqueantes (`error()`) + alertas informativos, por camada |
-| Front-end | `app.py` | App Streamlit — única aplicação que orquestra as camadas acima |
+
+**Catálogo — atendimento ao negócio**
+
+| Componente | Arquivo | Função |
+|---|---|---|
+| Front-end | `app.py` | App Streamlit — único componente que orquestra os jobs acima e serve a UI |
 
 **Componentes internos do `app.py`** (catálogo de funções/blocos):
 
