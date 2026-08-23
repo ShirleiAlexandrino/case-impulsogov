@@ -74,32 +74,41 @@ flowchart TB
     end
 
     subgraph APP["Application Architecture"]
-        direction LR
+        direction TB
         JOBS["sql/01–04<br/>ingestão · limpeza · regra · métricas"]
         PRIV["sql/05<br/>views LGPD"]
         GUARD["sql/06<br/>guardrails"]
-        STREAMLIT["app.py<br/>login por nu_ine · 2 perfis"]
+        STREAMLIT["app.py — login por nu_ine"]
+        LISTA["Aba Lista nominal<br/>(só existe p/ perfil equipe)"]
+        PAINEL["Aba Painel de cobertura<br/>(equipe e gestão, conteúdo distinto)"]
         JOBS --> STREAMLIT
         PRIV --> STREAMLIT
         GUARD --> STREAMLIT
+        STREAMLIT --> LISTA
+        STREAMLIT --> PAINEL
     end
 
     subgraph BIZ["Business Architecture"]
         direction LR
-        EQUIPE["Enfermeiro / ACS da eSF"]
-        GESTAO_ATOR["Gestão"]
+        EQUIPE["Enfermeiro / ACS da eSF<br/>(perfil equipe, nu_ine real)"]
+        GESTAO_ATOR["Gestão<br/>(perfil GESTAO_GLOBAL)"]
         SERVICO["Gestão do cuidado de<br/>pessoas com hipertensão"]
         EQUIPE --> SERVICO
         GESTAO_ATOR --> SERVICO
     end
 
     ENGINE --> DATA
-    DATA --> APP
     CLOUD -. executa .-> STREAMLIT
-    STREAMLIT --> ENGINE
-    BROWSER --> EQUIPE
-    BROWSER --> GESTAO_ATOR
-    APP --> BIZ
+    G1 -- "identificado, filtrado por nu_ine" --> LISTA
+    GA -- "gestão: todas · equipe: só a própria" --> PAINEL
+    GM -. "view existe, não consumida pelo app hoje" .-> STREAMLIT
+
+    EQUIPE -- "acessa" --> BROWSER
+    GESTAO_ATOR -- "acessa" --> BROWSER
+    BROWSER --> STREAMLIT
+    EQUIPE -. vê .-> LISTA
+    EQUIPE -. "vê (própria equipe)" .-> PAINEL
+    GESTAO_ATOR -. "vê (todas as equipes)" .-> PAINEL
 ```
 
 ## 1. Business Architecture
