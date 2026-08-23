@@ -263,7 +263,7 @@ Streamlit Community Cloud
   ├─ instala requirements.txt (streamlit, duckdb, pandas, altair)
   ├─ executa app.py
   │     └─ build_database() roda sql/01→02→03→05→06 num DuckDB in-memory
-  └─ serve https://case-impulsogov-shirlei-alexandrino.streamlit.app/
+  └─ serve https://case-impulsogov.streamlit.app/
                                 │
                                 ▼
                      navegador do usuário (equipe / gestão)

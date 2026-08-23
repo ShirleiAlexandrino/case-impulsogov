@@ -1,6 +1,6 @@
 # Case técnico — Analytics Engineer Sênior
 
-**Aplicação publicada:** https://case-impulsogov-shirlei-alexandrino.streamlit.app/
+**Aplicação publicada:** https://case-impulsogov.streamlit.app/
 
 ## Sobre esta entrega
 

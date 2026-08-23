@@ -14,4 +14,4 @@ necessário pra avaliar os cinco entregáveis oficiais (ver
   qualidade por camada (bloqueantes e informativas).
 - [`../app.py`](../app.py) — front-end Streamlit com seleção/simulação de
   perfil por `nu_ine` e dois perfis (equipe / gestão), publicado em
-  https://case-impulsogov-shirlei-alexandrino.streamlit.app/.
+  https://case-impulsogov.streamlit.app/.
