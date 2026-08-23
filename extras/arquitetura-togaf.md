@@ -276,9 +276,10 @@ Todo arquivo do repositório, mapeado ao domínio BDAT que ele implementa:
 
 | Artefato | Domínio |
 |---|---|
-| `sql/01_bronze.sql`, `02_silver.sql`, `03_gold.sql`, `04_metricas.sql` | Data + Application |
-| `sql/05_privacidade_lgpd.sql` | Data (minimização) |
-| `sql/06_guardrails.sql` | Data (qualidade) |
+| `sql/01_bronze.sql`, `02_silver.sql`, `03_gold.sql` | Data + Application — parte do runtime do app |
+| `sql/04_metricas.sql` | Data + Application — **fora** do runtime do app, execução avulsa |
+| `sql/05_privacidade_lgpd.sql` | Data (minimização) + Application — parte do runtime do app |
+| `sql/06_guardrails.sql` | Data (qualidade) + Application — parte do runtime do app |
 | `app.py` | Application |
 | `.streamlit/config.toml`, `requirements.txt` | Technology |
 | `dados/*.csv` | Data (fonte) |
