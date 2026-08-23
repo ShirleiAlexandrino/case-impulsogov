@@ -11,7 +11,7 @@ renderizada via [htmlpreview.github.io](https://htmlpreview.github.io/).
 
 | # | Entregável | Arquivo | Leitura opcional |
 |---|---|---|---|
-| 1 | Diagrama da arquitetura | [`01-diagrama-arquitetura.md`](01-diagrama-arquitetura.md) | [HTML](https://htmlpreview.github.io/?https://raw.githubusercontent.com/ShirleiAlexandrino/case-impulsogov/main/entregaveis/apresentacao/diagrama-arquitetura-offline.html) |
+| 1 | Diagrama da arquitetura | [`01-diagrama-arquitetura.md`](01-diagrama-arquitetura.md) | [HTML](https://htmlpreview.github.io/?https://raw.githubusercontent.com/ShirleiAlexandrino/case-impulsogov/main/entregaveis/apresentacao/diagrama-arquitetura.html) |
 | 2 | SQL da modelagem + números | [`02-sql-modelagem.md`](02-sql-modelagem.md) → código em [`../sql/`](../sql/) | — |
 | 3 | Documentação para produto | [`03-documentacao-produto.md`](03-documentacao-produto.md) | [HTML](https://htmlpreview.github.io/?https://raw.githubusercontent.com/ShirleiAlexandrino/case-impulsogov/main/entregaveis/apresentacao/documentacao-produto.html) |
 | 4 | Mensagem para engenharia de dados | [`04-mensagem-engenharia-dados.md`](04-mensagem-engenharia-dados.md) | [HTML](https://htmlpreview.github.io/?https://raw.githubusercontent.com/ShirleiAlexandrino/case-impulsogov/main/entregaveis/apresentacao/mensagem-engenharia-dados.html) |
