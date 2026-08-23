@@ -78,7 +78,7 @@ flowchart TB
 
     subgraph APP_SERVE["Application — atendimento ao negócio"]
         direction TB
-        STREAMLIT["app.py — login por nu_ine"]
+        STREAMLIT["app.py — seleção/simulação de perfil por nu_ine"]
         LISTA["Aba Lista nominal<br/>(só existe p/ perfil equipe)"]
         PAINEL["Aba Painel de cobertura<br/>(equipe e gestão, conteúdo distinto)"]
         STREAMLIT --> LISTA

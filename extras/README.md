@@ -12,6 +12,6 @@ necessário pra avaliar os cinco entregáveis oficiais (ver
   que o diagrama do entregável 1, que cobre só o pipeline.
 - [`../sql/06_guardrails.sql`](../sql/06_guardrails.sql) — checagens de
   qualidade por camada (bloqueantes e informativas).
-- [`../app.py`](../app.py) — front-end Streamlit com login por `nu_ine` e dois
-  perfis (equipe / gestão), publicado em
+- [`../app.py`](../app.py) — front-end Streamlit com seleção/simulação de
+  perfil por `nu_ine` e dois perfis (equipe / gestão), publicado em
   https://case-impulsogov-shirlei-alexandrino.streamlit.app/.
