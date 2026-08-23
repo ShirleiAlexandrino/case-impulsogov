@@ -80,3 +80,26 @@ escolha em si. Deixe as decisões visíveis em vez de escondê-las no código.
 Se algo estiver ambíguo, você pode perguntar — mas também pode simplesmente
 **assumir uma interpretação e registrá-la** na documentação. As duas saídas são
 aceitáveis.
+
+## Sobre a autora
+
+Este case foi resolvido por **Shirlei Alexandrino**.
+
+**Aplicação publicada:**
+- https://case-impulsogov-shirlei-alexandrino.streamlit.app/
+
+**Formação acadêmica:**
+
+| Instituição | Curso | Área | Período |
+| --- | --- | --- | --- |
+| FIAP | Executive MBA | Arquitetura de Soluções | 2025 – 2026 |
+| Fundação Getulio Vargas | MBA Executivo em Business Analytics e Big Data | Business Analytics e Big Data | 2017 – 2019 |
+| Pontifícia Universidade Católica do Rio de Janeiro | BI MASTER — Business Intelligence Master (Intelligent Business Decision Support Systems) | Business Intelligence | Incompleto |
+| Ibmec | MBA em Gestão de Projetos | Business | 2014 |
+| Fundação Getulio Vargas | MBA em Gestão de Processos | Business | 2011 – 2013 |
+| Universidade Federal Rural do Rio de Janeiro | Graduação | Business | 1995 – 2000 |
+
+**Reconhecimento:**
+- Uma das 19 profissionais na lista *"Profissionais Que Estão Promovendo a
+  Transformação Digital em Grandes Corporações"* — Forbes Insider, especial
+  Inovadores Negros: https://forbes.com.br/forbes-insider/especial-inovadores-negros
