@@ -74,41 +74,41 @@ a{color:var(--teal-dark);}
       <div class="who">analytics-engineer <span class="ts">hoje às 14:32</span></div>
     </div>
     <div class="msg-body">
-      <p>Fala, pessoal! 👋</p>
-      <p>Rodando a modelagem da Lista Nominal de Hipertensão em cima do que vocês exportam do e-SUS PEC, encontrei alguns problemas nos dados. Priorizei os <strong>três</strong> que eu resolveria primeiro:</p>
+      <p>Olá, pessoal!</p>
+      <p>Durante a modelagem da Lista Nominal de Hipertensão, a partir do que vocês exportam do e-SUS PEC, encontrei alguns problemas nos dados. Priorizei os <strong>três</strong> que eu resolveria primeiro:</p>
 
       <div class="priority">
         <div class="h"><span class="num">1</span><span class="t">Falta o campo de microárea</span></div>
-        <p>Nenhuma das três tabelas (<code>cidadao_pec</code>, <code>atendimento_individual</code>, <code>procedimentos</code>) tem microárea — só equipe (<code>nu_ine</code>/<code>no_equipe</code>), que é um nível acima. O protótipo da tela, já aprovado pelo produto, tem filtro por microárea — então isso bloqueia uma funcionalidade que já foi validada. Sei que o ACS registra microárea no e-SUS PEC — dá pra incluir na extração?</p>
+        <p>Nenhuma das três tabelas (<code>cidadao_pec</code>, <code>atendimento_individual</code>, <code>procedimentos</code>) tem microárea — só equipe (<code>nu_ine</code>/<code>no_equipe</code>), que é um nível acima. O protótipo da tela, já aprovado pelo produto, tem filtro por microárea — então isso bloqueia uma funcionalidade que já foi validada. Sei que o ACS registra microárea no e-SUS PEC — seria possível incluí-la na extração?</p>
       </div>
 
       <div class="priority">
         <div class="h"><span class="num">2</span><span class="t">O mesmo atendimento muda de valor entre cargas</span></div>
-        <p>Peguei o atendimento <code>co_seq_fat_atd_ind = 4100004.HIPERTENSÃO</code> (cidadão 700001): chega em maio com <code>no_equipe = "ESF 2"</code>, e em junho o <em>mesmo</em> registro histórico (mesma data, 2023-08-06) chega como <code>"Esf 2"</code>. Não é isolado — vi vários assim. Se a carga é incremental, um fato histórico não devia mudar de texto entre reenvios. É normalização sem controle de versão, ou reprocessamento total a cada carga? Hoje dedupliquei por "fica a transmissão mais recente" — queria confirmar se é mesmo a lógica certa.</p>
+        <p>Identifiquei o atendimento <code>co_seq_fat_atd_ind = 4100004.HIPERTENSÃO</code> (cidadão 700001): chega em maio com <code>no_equipe = "ESF 2"</code>, e em junho o <em>mesmo</em> registro histórico (mesma data, 2023-08-06) chega como <code>"Esf 2"</code>. Não é um caso isolado — encontrei vários assim. Se a carga é incremental, um fato histórico não deveria mudar de texto entre reenvios. É normalização sem controle de versão, ou reprocessamento total a cada carga? Hoje dedupliquei mantendo a transmissão mais recente — gostaria de confirmar se essa é realmente a lógica correta.</p>
       </div>
 
       <div class="priority">
         <div class="h"><span class="num">3</span><span class="t">Dicionário de dados desatualizado</span></div>
         <p>Duas divergências entre o que está documentado e o que veio no CSV:</p>
         <ul>
-          <li><code>co_seq_fat_atd_ind</code> está documentado como <code>bigint</code>, mas os valores reais são compostos (ex. <code>"4100001.HIPERTENSÃO"</code> — id + linha de cuidado). Tive que tratar como texto.</li>
-          <li><code>atendimento_individual.csv</code> diz conter só atendimentos de médico/enfermeiro, mas tem registros com CBO de técnico de enfermagem (<code>322205</code>), classificação <code>GERAL</code>.</li>
+          <li><code>co_seq_fat_atd_ind</code> está documentado como <code>bigint</code>, mas os valores reais são compostos (ex. <code>"4100001.HIPERTENSÃO"</code> — id + linha de cuidado). Foi necessário tratá-lo como texto.</li>
+          <li><code>atendimento_individual.csv</code> diz conter só atendimentos de médico ou enfermeiro, mas tem registros com CBO de técnico de enfermagem (<code>322205</code>), classificação <code>GERAL</code>.</li>
         </ul>
-        <p style="margin-top:10px">Vale atualizar a doc ou a extração, pra próxima pessoa não confiar no tipo ou na regra errada.</p>
+        <p style="margin-top:10px">Recomendo atualizar a documentação ou a extração, para que a próxima pessoa não confie no tipo ou na regra errada.</p>
       </div>
 
       <p><strong>Outros achados, sem prioridade imediata:</strong></p>
       <div class="others">
-        <p><b>Dois <code>nu_ine</code> com o mesmo <code>no_equipe</code>.</b> <code>0001234571</code> e <code>0001234572</code> aparecem ambos gravados como <code>"ESF 5"</code> (169 e 165 cidadãos cada). Como <code>no_equipe</code> é texto livre e <code>nu_ine</code> é a chave estável, qualquer relatório agrupado pelo nome — em vez do código — mistura duas equipes reais numa só linha, sem erro visível. Achei isso construindo um controle de acesso por <code>nu_ine</code> — vale avisar o produto também.</p>
+        <p><b>Dois <code>nu_ine</code> com o mesmo <code>no_equipe</code>.</b> <code>0001234571</code> e <code>0001234572</code> aparecem ambos gravados como <code>"ESF 5"</code> (169 e 165 cidadãos, respectivamente). Como <code>no_equipe</code> é texto livre e <code>nu_ine</code> é a chave estável, qualquer relatório agrupado pelo nome — em vez do código — mistura duas equipes reais numa só linha, sem erro visível. Identifiquei isso ao construir um controle de acesso por <code>nu_ine</code> — vale avisar o time de produto também.</p>
       </div>
       <div class="others">
-        <p><b>Datas no futuro e nascimentos implausíveis.</b> Checagem automática contra a data do retrato (2026-08-01) achou 27 atendimentos e 19 procedimentos com <code>dt_registro</code> no futuro, e 5 nascimentos implausíveis — inclui o caso de idade 0 já citado antes. Sintoma de erro de captura na origem.</p>
+        <p><b>Datas no futuro e nascimentos implausíveis.</b> A checagem automática contra a data do retrato (2026-08-01) encontrou 27 atendimentos e 19 procedimentos com <code>dt_registro</code> no futuro, além de 5 nascimentos implausíveis — incluindo o caso de idade 0 já citado. Parece sintoma de erro de captura na origem.</p>
       </div>
       <div class="others">
-        <p><code>qt_afericao_pressao_arterial</code> e <code>qt_glicemia</code> existem como colunas mas vêm sempre vazias — o valor real está solto em JSON em <code>propriedades</code>. Dá pra estruturar?</p>
+        <p><code>qt_afericao_pressao_arterial</code> e <code>qt_glicemia</code> existem como colunas, mas vêm sempre vazias — o valor real está em JSON, dentro de <code>propriedades</code>. Seria possível estruturar esse campo?</p>
       </div>
 
-      <p style="margin-top:16px">Posso mandar as queries que usei pra achar cada um desses casos, se ajudar a investigar. 🙏</p>
+      <p style="margin-top:16px">Posso compartilhar as queries que utilizei para identificar cada um desses casos, caso ajude na investigação.</p>
     </div>
   </div>
 </div>
