@@ -1,5 +1,7 @@
 # Entregáveis
 
+**Aplicação publicada:** https://case-impulsogov-shirlei-alexandrino.streamlit.app/
+
 Os cinco itens pedidos em [`../ENTREGAVEIS.md`](../ENTREGAVEIS.md), na ordem da
 tabela de lá. Cada um tem uma versão Markdown (o entregável em si) e, para os
 itens com texto, uma versão HTML estilizada em [`apresentacao/`](apresentacao/)
