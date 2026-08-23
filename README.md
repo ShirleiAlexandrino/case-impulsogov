@@ -1,5 +1,7 @@
 # Case técnico — Analytics Engineer Sênior
 
+**Aplicação publicada:** https://case-impulsogov-shirlei-alexandrino.streamlit.app/
+
 Obrigado pelo interesse na vaga. Este case simula uma tarefa real do time:
 transformar dados brutos da atenção primária em uma tabela que sustenta um
 produto usado por equipes de saúde.
@@ -84,9 +86,6 @@ aceitáveis.
 ## Sobre a autora
 
 Este case foi resolvido por **Shirlei Alexandrino**.
-
-**Aplicação publicada:**
-- https://case-impulsogov-shirlei-alexandrino.streamlit.app/
 
 **Formação acadêmica:**
 
