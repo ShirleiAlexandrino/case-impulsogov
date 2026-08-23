@@ -1,7 +1,5 @@
 # Entregáveis
 
-**Aplicação publicada:** https://case-impulsogov-shirlei-alexandrino.streamlit.app/
-
 ## O contexto
 
 A Impulso mantém um produto de gestão da atenção primária usado por equipes de
