@@ -2,8 +2,9 @@
 
 Usei o Claude (Claude Code) do início ao fim do case: leitura do enunciado e
 dos arquivos de contexto, modelagem SQL das três camadas (bronze/silver/gold),
-diagrama de arquitetura, documentação para o time de produto e a mensagem
-para engenharia de dados.
+tratamento de privacidade dos dados (LGPD) e gestão de acesso, diagrama de
+arquitetura, documentação para o time de produto e a mensagem para
+engenharia de dados.
 
 **O que aceitei.** Sugeri a arquitetura medalhão (bronze/silver/gold) para o
 pipeline; o que aceitei foi a lógica de regras de negócio que a IA
@@ -13,7 +14,12 @@ antes/depois da deduplicação, casos específicos de pessoas (ex. reabertura de
 diagnóstico após "condição resolvida"), e os números finais da lista. Também
 sugeri usar os domínios do TOGAF para estruturar o diagrama de arquitetura, e
 aceitei a forma como a IA aplicou essa diretriz — proporcional ao tamanho do
-case, sem inflar num processo ADM completo.
+case, sem inflar num processo ADM completo. Da mesma forma, pedi o
+tratamento de privacidade dos dados (LGPD, pela sensibilidade de dado de
+saúde) e, depois, um perfil gerencial adicional para diferenciar o acesso
+por função — aceitei a forma como a IA estruturou as camadas de minimização
+de dado (views por finalidade) e o controle de acesso por perfil (`nu_ine`)
+em cima dessas duas diretrizes.
 
 **O que rejeitei ou corrigi.** Duas coisas, em direções opostas:
 
