@@ -204,7 +204,9 @@ if st.session_state.nu_ine_logado is None:
     st.caption("Acesso restrito por perfil")
     st.info(
         "O acesso é condicionado ao perfil — cada equipe só acessa a própria "
-        "lista; o perfil de Gestão acessa todas. Selecione seu perfil para entrar."
+        "lista; o perfil de Gestão acessa todas. Selecione seu perfil para entrar. "
+        "(Esta é uma simulação do controle de acesso baseada no perfil escolhido, "
+        "não uma autenticação real.)"
     )
     rotulo_escolhido = st.selectbox("Seu perfil", [ROTULO_GESTAO] + equipes_disponiveis["rotulo"].tolist())
     if st.button("Entrar", type="primary"):
