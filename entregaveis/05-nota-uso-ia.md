@@ -9,10 +9,10 @@ para engenharia de dados.
 mas só depois de rodar o pipeline de verdade contra os três CSVs (não aceitei
 o SQL de olho): conferi contagens de linhas antes/depois da deduplicação,
 casos específicos de pessoas (ex. reabertura de diagnóstico após "condição
-resolvida"), e os números finais da lista. Também aceitei a sugestão de
-estruturar o diagrama de arquitetura usando os domínios do TOGAF — pedi
-explicitamente essa referência e a IA aplicou de forma proporcional ao
-tamanho do case, sem inflar em um processo ADM completo.
+resolvida"), e os números finais da lista. Também sugeri usar os domínios do
+TOGAF para estruturar o diagrama de arquitetura, e aceitei a forma como a IA
+aplicou essa diretriz — proporcional ao tamanho do case, sem inflar num
+processo ADM completo.
 
 **O que rejeitei ou corrigi.** Duas coisas, em direções opostas:
 
