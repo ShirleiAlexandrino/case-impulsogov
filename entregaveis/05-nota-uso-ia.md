@@ -6,21 +6,22 @@ guardrails de qualidade por camada, tratamento de privacidade dos dados
 (LGPD) e gestão de acesso, diagrama de arquitetura, documentação para o time
 de produto e a mensagem para engenharia de dados.
 
-**O que aceitei.** Sugeri a arquitetura medalhão (bronze/silver/gold) para o
-pipeline; o que aceitei foi a lógica de regras de negócio que a IA
-implementou em cima dela — mas só depois de rodar o pipeline de verdade
-contra os três CSVs (não aceitei o SQL de olho): conferi contagens de linhas
-antes/depois da deduplicação, casos específicos de pessoas (ex. reabertura de
-diagnóstico após "condição resolvida"), e os números finais da lista. Também
-sugeri usar os domínios do TOGAF para estruturar o diagrama de arquitetura, e
-aceitei a forma como a IA aplicou essa diretriz — proporcional ao tamanho do
-case, sem inflar num processo ADM completo. Da mesma forma, pedi guardrails
-de qualidade por camada, o tratamento de privacidade dos dados (LGPD, pela
-sensibilidade de dado de saúde) e, depois, um perfil gerencial adicional
-para diferenciar o acesso por função — aceitei a forma como a IA estruturou
-as assertions bloqueantes e alertas informativos, as camadas de minimização
-de dado (views por finalidade) e o controle de acesso por perfil (`nu_ine`)
-em cima dessas diretrizes.
+**Diretrizes que dei.** Cinco decisões de arquitetura partiram de mim, não da
+IA: a arquitetura medalhão (bronze/silver/gold) para o pipeline; os domínios
+do TOGAF para estruturar o diagrama; o tratamento de privacidade dos dados
+(LGPD, pela sensibilidade de dado de saúde); guardrails de qualidade por
+camada; e, depois, um perfil gerencial adicional para diferenciar o acesso
+por função.
+
+**O que aceitei.** A execução da IA em cima dessas diretrizes — mas só depois
+de validar: rodei o pipeline de verdade contra os três CSVs (não aceitei o
+SQL de olho), conferindo contagens de linhas antes/depois da deduplicação,
+casos específicos de pessoas (ex. reabertura de diagnóstico após "condição
+resolvida") e os números finais da lista. Aceitei também a aplicação do
+TOGAF, proporcional ao tamanho do case, sem inflar num processo ADM
+completo; as camadas de minimização de dado (views por finalidade) e o
+controle de acesso por perfil (`nu_ine`); e as assertions bloqueantes e
+alertas informativos dos guardrails.
 
 **O que rejeitei ou corrigi.** Duas coisas, em direções opostas:
 
