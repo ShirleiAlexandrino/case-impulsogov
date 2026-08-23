@@ -70,9 +70,10 @@ flowchart TB
 
     subgraph APP_PIPE["Application — construção do pipeline (jobs SQL)"]
         direction LR
-        JOBS["sql/01–04<br/>ingestão · limpeza · regra · métricas"]
+        JOBS["sql/01–03<br/>ingestão · limpeza · regra"]
         PRIV["sql/05<br/>views LGPD"]
         GUARD["sql/06<br/>guardrails"]
+        METRICS["sql/04 — métricas<br/>(execução avulsa p/ entregável 2,<br/>fora do runtime do app)"]
     end
 
     subgraph APP_SERVE["Application — atendimento ao negócio"]
@@ -84,9 +85,12 @@ flowchart TB
         STREAMLIT --> PAINEL
     end
 
-    JOBS --> STREAMLIT
-    PRIV --> STREAMLIT
-    GUARD --> STREAMLIT
+    ENGINE -. executa .-> APP_PIPE
+    JOBS --> DATA
+    PRIV --> LGPDVIEWS
+    GUARD -- valida --> DATA
+    GUARD -. "bloqueia init do app se falhar" .-> STREAMLIT
+    METRICS -. "lê (offline)" .-> G1
 
     subgraph TECH_SERVE["Technology — atendimento ao negócio"]
         direction LR
@@ -106,7 +110,6 @@ flowchart TB
         GESTAO_ATOR --> SERVICO
     end
 
-    ENGINE --> DATA
     CLOUD -. executa .-> STREAMLIT
     G1 -- "identificado, filtrado por nu_ine" --> LISTA
     GA -- "gestão: todas · equipe: só a própria" --> PAINEL
@@ -173,20 +176,28 @@ derivam de `gold_lista_nominal_hipertensao`, não da Silver.
 
 ## 3. Application Architecture
 
-Mesma lógica da seção 4: uma parte constrói o pipeline (jobs SQL, rodam a
-cada boot do app), a outra atende o negócio (o app Streamlit em si, que o
-usuário efetivamente abre).
+Mesma lógica da seção 4: uma parte constrói o pipeline (jobs SQL que
+produzem as camadas de dado), a outra atende o negócio (o app Streamlit em
+si, que o usuário efetivamente abre). `build_database()` (em `app.py`) roda
+01→02→03→05→06 a cada boot; **`sql/04_metricas.sql` não está nessa lista** —
+é execução avulsa, só para gerar os números do entregável 2, e lê
+diretamente de `gold_lista_nominal_hipertensao` fora do runtime do app.
 
-**Catálogo — construção do pipeline (jobs SQL)**
+**Catálogo — construção do pipeline (jobs SQL, parte do runtime do app)**
 
 | Componente | Arquivo | Função |
 |---|---|---|
 | Ingestão | `sql/01_bronze.sql` | `read_csv` com tipagem explícita dos 3 arquivos fonte |
 | Limpeza | `sql/02_silver.sql` | Deduplicação, extração de JSON (`propriedades`) |
 | Regra de negócio | `sql/03_gold.sql` | Critério de entrada/saída, cálculo dos 3 status |
-| Relatório | `sql/04_metricas.sql` | Números do entregável 2 (contagem + distribuição) |
 | Minimização de dado | `sql/05_privacidade_lgpd.sql` | As 2 views derivadas por finalidade |
 | Qualidade | `sql/06_guardrails.sql` | Assertions bloqueantes (`error()`) + alertas informativos, por camada |
+
+**Fora do runtime do app**
+
+| Componente | Arquivo | Função |
+|---|---|---|
+| Relatório | `sql/04_metricas.sql` | Números do entregável 2 (contagem + distribuição) — rodado manualmente, não pelo `app.py` |
 
 **Catálogo — atendimento ao negócio**
 
