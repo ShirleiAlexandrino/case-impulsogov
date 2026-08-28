@@ -112,4 +112,4 @@ Este case foi resolvido por **Shirlei Alexandrino**.
 **Reconhecimento:**
 - Uma das 19 profissionais na lista *"Profissionais Que Estão Promovendo a
   Transformação Digital em Grandes Corporações"* — Forbes Insider, especial
-  Inovadores Negros: https://forbes.com.br/forbes-insider/especial-inovadores-negros
+  Inovadores Negros: https://forbes.com.br/forbes-tech/2020/09/especial-inovadores-negros-18-profissionais-que-estao-promovendo-a-transformacao-digital-em-grandes-corporacoes/#:~:text=Shirlei%20Alexandrino
