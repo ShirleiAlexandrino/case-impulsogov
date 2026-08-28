@@ -3,3 +3,4 @@ __pycache__/
 *.duckdb
 .DS_Store
 *.zip
+notebooks/
