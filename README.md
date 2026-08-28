@@ -104,7 +104,6 @@ Este case foi resolvido por **Shirlei Alexandrino**.
 | --- | --- | --- | --- |
 | FIAP | Executive MBA | Arquitetura de Soluções | 2025 – 2026 |
 | Fundação Getulio Vargas | MBA Executivo em Business Analytics e Big Data | Business Analytics e Big Data | 2017 – 2019 |
-| Pontifícia Universidade Católica do Rio de Janeiro | BI MASTER — Business Intelligence Master (Intelligent Business Decision Support Systems) | Business Intelligence | Incompleto |
 | Ibmec | MBA em Gestão de Projetos | Business | 2014 |
 | Fundação Getulio Vargas | MBA em Gestão de Processos | Business | 2011 – 2013 |
 | Universidade Federal Rural do Rio de Janeiro | Graduação | Business | 1995 – 2000 |
